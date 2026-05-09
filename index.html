@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- Security Meta Tags -->
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <title>The Anti-Brainrot Society | TABS</title>
+  <!-- Professional Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #ffffff;
+      color: #1e1a2f;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f0edf7;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #716094;
+      border-radius: 8px;
+    }
+
+    section {
+      padding: 100px 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header - Clean White with Purple Accents */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 164, 224, 0.3);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 16px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .logo-area:hover {
+      transform: scale(1.02);
+    }
+
+    .logo-image {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #7c6aa1, #564971);
+      box-shadow: 0 8px 16px rgba(155, 135, 194, 0.2);
+    }
+
+    .brand h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      background: linear-gradient(120deg, #5a506d, #4e4364);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .brand p {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #b8a4e0;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #433760;
+      transition: 0.25s;
+      position: relative;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #b8a4e0, #d9c8ff);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #b8a4e0;
+    }
+
+    /* Typography */
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #2d2352;
+    }
+
+    .section-sub {
+      color: #756796;
+      margin-bottom: 48px;
+      font-size: 1.1rem;
+      max-width: 700px;
+      font-weight: 400;
+    }
+
+    /* Hero Section with STATIC IMAGE Background - Light Overlay */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      /* 👇 REPLACE 'hero-bg.jpg' with your own image file name 👇 */
+      background: url('bgimg.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      /* optional parallax effect, remove if not wanted */
+    }
+
+    /* Light Purple Overlay - Semi-transparent */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(216, 200, 255, 0.1) 0%, rgba(200, 180, 240, 0.1) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #2d2352;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #03010c;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(125deg, #584b6f, #b89eff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      font-size: 1.35rem;
+      font-weight: 500;
+      border-left: 4px solid #534969;
+      padding-left: 20px;
+      margin: 28px 0;
+      color: #4a3a6e;
+    }
+
+    .hero-content p {
+      color: #4a3a6e;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #9b87c2, #7a68a0);
+      color: white;
+      padding: 14px 38px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(107, 90, 149, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(107, 90, 149, 0.35);
+      background: linear-gradient(135deg, #b094d0, #8b77b0);
+    }
+
+    .btn-outline {
+      border: 2px solid #9b87c2;
+      padding: 12px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      background: transparent;
+      transition: 0.3s;
+      cursor: pointer;
+      color: #7a68a0;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline:hover {
+      background: #5b4f72;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(155, 135, 194, 0.2);
+    }
+
+    .btn-group {
+      margin-top: 36px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Cards Grid - White with Purple Borders */
+    .events-grid,
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .event-card,
+    .gallery-item,
+    .team-card {
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(107, 90, 149, 0.08);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(155, 135, 194, 0.2);
+    }
+
+    .event-card:hover,
+    .team-card:hover,
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(107, 90, 149, 0.15);
+      border-color: rgba(155, 135, 194, 0.4);
+    }
+
+    .event-date {
+      background: #faf8ff;
+      padding: 14px 24px;
+      font-weight: 600;
+      color: #9b87c2;
+      border-bottom: 1px solid rgba(155, 135, 194, 0.15);
+      font-size: 0.85rem;
+    }
+
+    .event-info {
+      padding: 28px;
+    }
+
+    .badge-ended {
+      background: #f5f0ff;
+      color: #9b87c2;
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-soon {
+      background: #f5f0ff;
+      color: #7a68a0;
+    }
+
+    /* Gallery */
+    .gallery-item {
+      background: #ffffff;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #f5f0ff;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.03);
+    }
+
+    .gallery-caption {
+      padding: 16px;
+      text-align: center;
+      font-weight: 500;
+      color: #7a68a0;
+      background: white;
+      font-size: 0.9rem;
+    }
+
+    /* Team Cards */
+    .team-card {
+      text-align: center;
+      padding-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .team-img {
+      width: 100%;
+      height: 280px;
+      background: #faf8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .team-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .team-card:hover .team-photo {
+      transform: scale(1.05);
+    }
+
+    .team-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #b8a4e0;
+      gap: 8px;
+    }
+
+    .team-info {
+      padding: 24px 20px 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #2d2352;
+      line-height: 1.3;
+    }
+
+    .team-role {
+      color: #9b87c2;
+      font-weight: 600;
+      margin: 8px 0;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .team-saying {
+      font-size: 0.8rem;
+      margin: 14px 0;
+      color: #6b5a8a;
+      background: #faf8ff;
+      padding: 12px;
+      border-radius: 20px;
+      line-height: 1.45;
+      border-left: 3px solid #b8a4e0;
+    }
+
+    .social-icons {
+      margin-top: 8px;
+    }
+
+    .social-icons a {
+      color: #b8a4e0;
+      margin: 0 10px;
+      font-size: 1.2rem;
+      transition: 0.25s;
+      display: inline-block;
+    }
+
+    .social-icons a:hover {
+      color: #9b87c2;
+      transform: translateY(-3px);
+    }
+
+    /* About Section - White with Purple Accents */
+    .about-wrap {
+      background: #ffffff;
+      border-radius: 48px;
+      padding: 52px 48px;
+      border: 1px solid rgba(155, 135, 194, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.02);
+    }
+
+    .mission-vision {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .mv-card {
+      flex: 1;
+      background: #fefcff;
+      padding: 32px;
+      border-radius: 32px;
+      border: 1px solid rgba(155, 135, 194, 0.15);
+      transition: all 0.3s;
+    }
+
+    .mv-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(155, 135, 194, 0.3);
+      box-shadow: 0 12px 28px rgba(107, 90, 149, 0.08);
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: space-between;
+      background: #ffffff;
+      border-radius: 48px;
+      padding: 52px 48px;
+      border: 1px solid rgba(155, 135, 194, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.02);
+    }
+
+    .contact-info i {
+      width: 32px;
+      color: #524769;
+      font-size: 1.2rem;
+    }
+
+    .contact-info p {
+      margin: 18px 0;
+      font-size: 0.95rem;
+      color: #4a3a6e;
+    }
+
+    .social-links-footer a {
+      margin-right: 24px;
+      font-size: 1.6rem;
+      color: #b8a4e0;
+      transition: 0.25s;
+      display: inline-block;
+    }
+
+    .social-links-footer a:hover {
+      color: #504564;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #faf8ff;
+      color: #524769;
+      text-align: center;
+      padding: 36px;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(155, 135, 194, 0.2);
+    }
+
+    @media (max-width: 800px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      h2 {
+        font-size: 1.9rem;
+      }
+
+      .about-wrap,
+      .contact-grid {
+        padding: 32px 24px;
+      }
+
+      .hero {
+        background-attachment: scroll;
+        /* better for mobile */
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.8s ease;
+    }
+
+    .fade-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    input,
+    textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      border: 1.5px solid #ede8f5;
+      border-radius: 40px;
+      padding: 12px 20px;
+      width: 100%;
+      background: #ffffff;
+      color: #2d2352;
+      font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #b8a4e0;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #9b87c2;
+      box-shadow: 0 0 0 3px rgba(155, 135, 194, 0.1);
+    }
+
+    textarea {
+      border-radius: 24px;
+      resize: vertical;
+    }
+
+    /* Security: Prevent text selection and image dragging/interaction */
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo-area">
+        <img id="siteLogo" class="logo-image" src="logo.jpeg" alt="TABS Logo"
+          onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 48 48\'%3E%3Crect width=\'48\' height=\'48\' fill=\'%239b87c2\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'white\' font-size=\'20\' font-family=\'monospace\'%3ETABS%3C/text%3E%3C/svg%3E';">
+        <div class="brand">
+          <h1>The Anti‑Brainrot Society</h1>
+          <p>TABS · reclaim your attention</p>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME Section with STATIC BACKGROUND IMAGE -->
+    <section id="home" class="hero">
+      <!-- The background image is set via CSS on .hero -->
+      <!-- If the image hero-bg.jpg is missing, the overlay still shows -->
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content fade-up">
+          <h1>Because <span class="hero-gradient">Rotting</span><br>is not an option.</h1>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-wrap fade-up">
+          <h2>About TABS</h2>
+          <p style="font-size:1.1rem; margin-bottom: 24px; color: #6b5a8a;">We live in an era of relentless digital
+            noise — endless scrolling, short-form content, algorithm-fueled feeds battling for every second of your
+            time.</p>
+          <p>We're consuming more than ever, but our focus is fading, our thinking reactive, and true depth vanishing.
+            Overloaded with info, starved for clarity, we're turning into passive scrollers instead of conscious
+            creators. The Anti-Brainrot Society fights back. We champion focus over fragmentation, critical thinking
+            over trends, and intentional living over mindless feeds. Through mindful digital habits, deep work sessions,
+            and meaningful connections, we sharpen intellect and guard our most precious resource.</p>
+          <div class="mission-vision">
+            <div class="mv-card"><i class="fas fa-eye" style="font-size:1.8rem; color:#9b87c2;"></i>
+              <h3 style="margin:20px 0 12px; color:#2d2352;">Vision</h3>
+              <p>To build a generation of mindful, intellectually sharp, and emotionally resilient individuals who
+                choose depth over distraction, clarity over chaos, and growth over mindless consumption.</p>
+            </div>
+            <div class="mv-card"><i class="fas fa-bullseye" style="font-size:1.8rem; color:#9b87c2;"></i>
+              <h3 style="margin:20px 0 12px; color:#2d2352;">Mission</h3>
+              <p>Raise awareness on digital overstimulation, encourage conscious content consumption, promote critical
+                thinking & real-world engagement, and inspire reclaiming identity from digital noise.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="container">
+        <h2 class="fade-up">Events</h2>
+        <p class="section-sub fade-up">Curated events to restore clarity and foster deep connection.</p>
+        <div class="events-grid">
+          <div class="event-card fade-up">
+            <div class="event-date"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i> 22 Febuary 2026</div>
+            <div class="event-info">
+              <span class="badge-ended">completed</span>
+              <h3 style="margin: 14px 0 10px; color:#2d2352;">La Première Pause</h3>
+              <p>Art & Crafts + digital detox + Sing along. We unplugged together in Coimbatore, shared analog
+                moments.</p>
+            </div>
+          </div>
+          <div class="event-card fade-up">
+            <div class="event-date"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i> 10 May 2026
+            </div>
+            <div class="event-info">
+              <span class="badge-ended badge-soon">Upcoming</span>
+              <h3 style="margin: 14px 0 10px; color:#2d2352;">The Awakening vol 2</h3>
+              <p>Puzzles Solving + Mystery Games + Sing along and more.</p>
+            </div>
+          </div>
+          <div class="event-card fade-up">
+            <div class="event-date"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i> will be announced
+              soon</div>
+            <div class="event-info">
+              <span class="badge-ended badge-soon">coming soon</span>
+              <h3 style="margin: 14px 0 10px; color:#2d2352;">Planning</h3>
+              <p>Critical thinking debates, nature immersion, and creative jam — real-world engagement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <h2 class="fade-up">Gallery</h2>
+        <p class="section-sub fade-up">Visual archives from our pauses & community gatherings.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img class="gallery-img" src="lapp.png" alt="Pause moments"
+              onerror="this.onerror=null; this.src='https://placehold.co/400x300/f5f0ff/9b87c2?text=Pause+Moment';">
+            <div class="gallery-caption">Pause moments</div>
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-img" src="gallery2.jpg" alt="Awakening moments"
+              onerror="this.onerror=null; this.src='https://placehold.co/400x300/f5f0ff/9b87c2?text=Awakening+Moments';">
+            <div class="gallery-caption">Awakening moments</div>
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-img" src="gallery3.jpg" alt="hope your pic will be in this"
+              onerror="this.onerror=null; this.src='https://placehold.co/400x300/f5f0ff/9b87c2?text=Upcoming+Event';">
+            <div class="gallery-caption">Hope you too with us in this</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <h2 class="fade-up">Core Team</h2>
+        <p class="section-sub fade-up">Thinkers, creators & focus advocates behind TABS.</p>
+        <div class="team-grid" id="teamGrid"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid fade-up" style="justify-content: center; text-align: center;">
+          <div class="contact-info" style="display: flex; flex-direction: column; align-items: center;">
+            <h3 style="color:#2d2352; font-weight:700;">Connect with us</h3>
+            <p><i class="fas fa-envelope" style="width: 28px;"></i> theantibrainrotsociety@gmail.com</p>
+            <p><i class="fab fa-instagram" style="width: 28px;"></i> @theantibrainrotsociety</p>
+            <p><i class="fab fa-linkedin" style="width: 28px;"></i> The Anti Brainrot Society</p>
+            <p><i class="fas fa-map-marker-alt" style="width: 28px;"></i> Coimbatore, India</p>
+            <div class="social-links-footer"
+              style="margin-top: 28px; display: flex; justify-content: center; gap: 24px;">
+              <a href="https://www.instagram.com/theantibrainrot_society?igsh=bDR0Z2w2em9ldDZv" target="_blank"
+                rel="noopener noreferrer" style="margin: 0;"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/the-antibrainrot-society/" target="_blank"
+                rel="noopener noreferrer" style="margin: 0;"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 The Anti-Brainrot Society — Because Rotting is not an option. Reclaim your attention, sharpen your mind.
+    </p>
+  </footer>
+
+  <script>
+    const faders = document.querySelectorAll('.fade-up');
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+    const appearOnScroll = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    const teamMembers = [
+      { name: "Kanika Sivakumar", role: "Founder & Community Head", insta: "https://www.instagram.com/kanikaa_sivakumar?igsh=amx5a2MzaHZ6c2hs", linkedin: "https://www.linkedin.com/in/kanika-sivakumar-b08677313?utm_source=share_via&utm_content=profile&utm_medium=member_android", saying: "Don't be silly, you can try again, that's what mornings are for.", photo: "kanii img.jpeg" },
+      { name: "Kokila", role: "Innovation Strategist", insta: "https://www.instagram.com/_thenameis_kokila_2204", linkedin: "https://www.linkedin.com/in/kokila-s-855304327", saying: "Hakuna Matata.", photo: "kokilaa img.jpeg" },
+      { name: "Jokani Nanthakumar", role: "Tech and Innovation Lead", insta: "https://www.instagram.com/jokani_nanthakumar", linkedin: "https://www.linkedin.com/in/jokani-nanthakumar-8a8474287", saying: "Just do Things! Some make sense, Some make stories.", photo: "jokani img.jpeg" },
+      { name: "Keerthana S", role: "Marketing and Member Engagement Lead", insta: "https://www.instagram.com/keerthu_3010", linkedin: "https://www.linkedin.com/in/keerthana-s-5ab044324", saying: "Own your journey. Have the grit to chase your dreams.", photo: "keerthana img.jpeg" },
+      { name: "Thanya Susila", role: "Operations Lead", insta: "https://www.instagram.com/thanyasusila", linkedin: "https://www.linkedin.com/in/thanyasusila", saying: "Work like everything depends on you. Trust like everything depends on the universe.", photo: "thaniya img.jpeg" },
+      { name: "Rasiga Sathyaseelan", role: "Finance and Operations Associate", insta: "https://www.instagram.com/rasigasathya", linkedin: "https://www.linkedin.com/in/rasigas", saying: "Attention is the most valuable currency we have.", photo: "rasiga img.jpeg" },
+      { name: "Shanofer D", role: "Event Coordinator", insta: "https://www.instagram.com/_.shanofer._", linkedin: "https://www.linkedin.com/in/shanofer-d-342432285", saying: "Quietly building something powerful, loud enough to be remembered.", photo: "shano img.jpeg" }
+    ];
+
+    const teamGrid = document.getElementById('teamGrid');
+    function buildTeam() {
+      teamGrid.innerHTML = '';
+      teamMembers.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'team-card fade-up';
+        card.innerHTML = `
+        <div class="team-img">
+          <img class="team-photo" src="${member.photo}" alt="${member.name}" 
+               onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'team-img-placeholder\\'><i class=\\'fas fa-user-circle\\' style=\\'font-size:3rem;\\'></i><span>${member.name.split(' ')[0]}</span><small>add photo</small></div>';">
+        </div>
+        <div class="team-info">
+          <div class="team-name">${member.name}</div>
+          <div class="team-role">${member.role}</div>
+          <div class="team-saying">${member.saying}</div>
+          <div class="social-icons">
+            <a href="${member.insta}" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      `;
+        teamGrid.appendChild(card);
+        appearOnScroll.observe(card);
+      });
+    }
+    buildTeam();
+
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElem = document.getElementById(targetId);
+        if (targetElem) targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    document.querySelector('.logo-area')?.addEventListener('click', () => {
+      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Security Features: Prevent downloads and screenshots
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('dragstart', event => event.preventDefault());
+
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(e.key)) ||
+        (e.ctrlKey && ['U', 'u', 'S', 's', 'C', 'c', 'P', 'p'].includes(e.key)) ||
+        e.key === 'PrintScreen'
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('Screenshots are disabled on this website.');
+      }
+    });
+  </script>
+</body>
+
+</html>
